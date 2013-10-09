@@ -33,6 +33,7 @@
 @implementation ReaderContentView
 {
 	ReaderContentPage *theContentView;
+    ReaderContentPage *theContentView2;
 
 	ReaderContentThumb *theThumbView;
 
@@ -77,7 +78,11 @@ static inline CGFloat ZoomScaleThatFits(CGSize target, CGSize source)
 {
 	CGRect targetRect = CGRectInset(self.bounds, CONTENT_INSET, CONTENT_INSET);
 
-	CGFloat zoomScale = ZoomScaleThatFits(targetRect.size, theContentView.bounds.size);
+    CGSize sourceSize = theContainerView.bounds.size;
+    
+    if ([message shouldDoublePageForCurrentInterfaceOrientation] && message.doublePageConsistentZoom && !theContentView2) sourceSize.width *= 2.0f;
+    
+	CGFloat zoomScale = ZoomScaleThatFits(targetRect.size, sourceSize);
 
 	self.minimumZoomScale = zoomScale; // Set the minimum and maximum zoom scales
 
@@ -86,7 +91,7 @@ static inline CGFloat ZoomScaleThatFits(CGSize target, CGSize source)
 	zoomAmount = ((self.maximumZoomScale - self.minimumZoomScale) / ZOOM_LEVELS);
 }
 
-- (id)initWithFrame:(CGRect)frame fileURL:(NSURL *)fileURL page:(NSUInteger)page password:(NSString *)phrase
+- (id)initWithFrame:(CGRect)frame fileURL:(NSURL *)fileURL page:(NSUInteger)page password:(NSString *)phrase message:(id <ReaderContentViewDelegate>)aMessage
 {
 	if ((self = [super initWithFrame:frame]))
 	{
@@ -101,12 +106,24 @@ static inline CGFloat ZoomScaleThatFits(CGSize target, CGSize source)
 		self.autoresizesSubviews = NO;
 		self.bouncesZoom = YES;
 		self.delegate = self;
+        message = aMessage;
 
 		theContentView = [[ReaderContentPage alloc] initWithURL:fileURL page:page password:phrase];
 
+        if ([message shouldDoublePageForCurrentInterfaceOrientation] && (message.doublePageFirstPage || page > 1) && page < theContentView.pageCount)
+        {
+            theContentView2 = [[ReaderContentPage alloc] initWithURL:fileURL page:page+1 password:phrase];
+            CGRect frame = theContentView2.frame;
+            frame.origin.x = theContentView.frame.size.width;
+            theContentView2.frame = frame;
+        }
+        
 		if (theContentView != nil) // Must have a valid and initialized content view
 		{
-			theContainerView = [[UIView alloc] initWithFrame:theContentView.bounds];
+            CGRect theContainerViewFrame = theContentView.bounds;
+            if (theContentView2) theContainerViewFrame.size.width *= 2;
+            
+			theContainerView = [[UIView alloc] initWithFrame:theContainerViewFrame];
 
 			theContainerView.autoresizesSubviews = NO;
 			theContainerView.userInteractionEnabled = NO;
@@ -122,7 +139,7 @@ static inline CGFloat ZoomScaleThatFits(CGSize target, CGSize source)
 
 #endif // end of READER_SHOW_SHADOWS Option
 
-			self.contentSize = theContentView.bounds.size; // Content size same as view size
+			self.contentSize = theContainerViewFrame.size; // Content size same as view size
 			self.contentOffset = CGPointMake((0.0f - CONTENT_INSET), (0.0f - CONTENT_INSET)); // Offset
 			self.contentInset = UIEdgeInsetsMake(CONTENT_INSET, CONTENT_INSET, CONTENT_INSET, CONTENT_INSET);
 
@@ -135,7 +152,8 @@ static inline CGFloat ZoomScaleThatFits(CGSize target, CGSize source)
 #endif // end of READER_ENABLE_PREVIEW Option
 
 			[theContainerView addSubview:theContentView]; // Add the content view to the container view
-
+            if (theContentView2) [theContainerView addSubview:theContentView2];
+            
 			[self addSubview:theContainerView]; // Add the container view to the scroll view
 
 			[self updateMinimumMaximumZoom]; // Update the minimum and maximum zoom scales

@@ -50,6 +50,7 @@ Supports:
  - Encrypted (password protected) PDFs.
  - PDF links (URI and go to page).
  - PDFs with rotated pages.
+ - Double page viewing in landscape orientation.
 
 ### Notes
 
@@ -156,6 +157,15 @@ the loss of retina display quality.
 
 `READER_ENABLE_PREVIEW` - If TRUE, a medium resolution page thumbnail
 is displayed before the CATiledLayer starts to render the PDF page.
+
+`READER_ENABLE_DOUBLE_PAGE` - If TRUE, two pages will be displayed at once
+in landscape orientation, when necessary.
+
+`READER_ENABLE_DOUBLE_PAGE_CONSISTENT_ZOOM` - If TRUE, single pages will
+have the same zoom scale as double pages. `READER_ENABLE_DOUBLE_PAGE` must also be TRUE.
+
+`READER_ENABLE_DOUBLE_PAGE_FIRST_PAGE` - If TRUE, the first page will also
+display the second page. `READER_ENABLE_DOUBLE_PAGE` must also be TRUE.
 
 ### ReaderDocument Archiving
 

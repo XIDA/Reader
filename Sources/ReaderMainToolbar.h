@@ -36,6 +36,7 @@
 
 - (void)tappedInToolbar:(ReaderMainToolbar *)toolbar doneButton:(UIButton *)button;
 - (void)tappedInToolbar:(ReaderMainToolbar *)toolbar thumbsButton:(UIButton *)button;
+- (void)tappedInToolbar:(ReaderMainToolbar *)toolbar doublePageButton:(UIButton *)button;
 - (void)tappedInToolbar:(ReaderMainToolbar *)toolbar printButton:(UIButton *)button;
 - (void)tappedInToolbar:(ReaderMainToolbar *)toolbar emailButton:(UIButton *)button;
 - (void)tappedInToolbar:(ReaderMainToolbar *)toolbar markButton:(UIButton *)button;
@@ -49,6 +50,9 @@
 - (id)initWithFrame:(CGRect)frame document:(ReaderDocument *)object;
 
 - (void)setBookmarkState:(BOOL)state;
+
+- (void)setDoublePageState:(BOOL)state;
+- (BOOL)doublePageState;
 
 - (void)hideToolbar;
 - (void)showToolbar;

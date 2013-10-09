@@ -35,6 +35,11 @@
 
 	UIImage *markImageN;
 	UIImage *markImageY;
+    
+    UIButton *doublePageButton;
+    
+	UIImage *doublePageImageN;
+	UIImage *doublePageImageY;
 }
 
 #pragma mark Constants
@@ -49,6 +54,7 @@
 #define PRINT_BUTTON_WIDTH 40.0f
 #define EMAIL_BUTTON_WIDTH 40.0f
 #define MARK_BUTTON_WIDTH 40.0f
+#define DOUBLE_PAGE_BUTTON_WIDTH 40.0f
 
 #define TITLE_HEIGHT 28.0f
 
@@ -114,11 +120,32 @@
 		thumbsButton.autoresizingMask = UIViewAutoresizingNone;
 		thumbsButton.exclusiveTouch = YES;
 
-		[self addSubview:thumbsButton]; //leftButtonX += (THUMBS_BUTTON_WIDTH + BUTTON_SPACE);
+		[self addSubview:thumbsButton]; leftButtonX += (THUMBS_BUTTON_WIDTH + BUTTON_SPACE);
 
 		titleX += (THUMBS_BUTTON_WIDTH + BUTTON_SPACE); titleWidth -= (THUMBS_BUTTON_WIDTH + BUTTON_SPACE);
 
 #endif // end of READER_ENABLE_THUMBS Option
+        
+#if (READER_ENABLE_DOUBLE_PAGE == TRUE) // Option
+        
+        doublePageImageN = [UIImage imageNamed:@"Reader-Double-Page-N"]; // N image
+		doublePageImageY = [UIImage imageNamed:@"Reader-Double-Page-Y"]; // Y image
+        
+		doublePageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		doublePageButton.frame = CGRectMake(leftButtonX, BUTTON_Y, DOUBLE_PAGE_BUTTON_WIDTH, BUTTON_HEIGHT);
+		[doublePageButton setImage:doublePageImageY forState:UIControlStateNormal];
+		[doublePageButton addTarget:self action:@selector(doublePageButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+		[doublePageButton setBackgroundImage:buttonH forState:UIControlStateHighlighted];
+		[doublePageButton setBackgroundImage:buttonN forState:UIControlStateNormal];
+		doublePageButton.autoresizingMask = UIViewAutoresizingNone;
+		doublePageButton.exclusiveTouch = YES;
+        doublePageButton.tag = READER_ENABLE_DOUBLE_PAGE;
+        
+		[self addSubview:doublePageButton]; //leftButtonX += (THUMBS_BUTTON_WIDTH + BUTTON_SPACE);
+        
+		titleX += (THUMBS_BUTTON_WIDTH + BUTTON_SPACE); titleWidth -= (THUMBS_BUTTON_WIDTH + BUTTON_SPACE);
+        
+#endif // end of READER_ENABLE_DOUBLE_PAGE Option
 
 #if (READER_BOOKMARKS == TRUE || READER_ENABLE_MAIL == TRUE || READER_ENABLE_PRINT == TRUE)
 
@@ -265,6 +292,47 @@
 #endif // end of READER_BOOKMARKS Option
 }
 
+- (void)setDoublePageState:(BOOL)state
+{
+#if (READER_ENABLE_DOUBLE_PAGE == TRUE) // Option
+    
+	if (state != doublePageButton.tag) // Only if different state
+	{
+		if (self.hidden == NO) // Only if toolbar is visible
+		{
+			UIImage *image = (state ? doublePageImageY : doublePageImageN);
+            
+			[doublePageButton setImage:image forState:UIControlStateNormal];
+		}
+        
+		doublePageButton.tag = state; // Update double page state tag
+	}
+    
+	if (doublePageButton.enabled == NO) doublePageButton.enabled = YES;
+    
+#endif // end of READER_ENABLE_DOUBLE_PAGE Option
+}
+
+- (BOOL)doublePageState
+{
+    return (BOOL)doublePageButton.tag;
+}
+
+- (void)updateDoublePageImage
+{
+#if (READER_ENABLE_DOUBLE_PAGE == TRUE) // Option
+    
+	BOOL state = doublePageButton.tag; // Double page state
+        
+    UIImage *image = (state ? doublePageImageY : doublePageImageN);
+        
+    [doublePageButton setImage:image forState:UIControlStateNormal];
+    
+	if (doublePageButton.enabled == NO) doublePageButton.enabled = YES;
+    
+#endif // end of READER_ENABLE_DOUBLE_PAGE Option
+}
+
 - (void)hideToolbar
 {
 	if (self.hidden == NO)
@@ -288,6 +356,7 @@
 	if (self.hidden == YES)
 	{
 		[self updateBookmarkImage]; // First
+        [self updateDoublePageImage]; // Second
 
 		[UIView animateWithDuration:0.25 delay:0.0
 			options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionAllowUserInteraction
@@ -311,6 +380,11 @@
 - (void)thumbsButtonTapped:(UIButton *)button
 {
 	[delegate tappedInToolbar:self thumbsButton:button];
+}
+
+- (void)doublePageButtonTapped:(UIButton *)button
+{
+	[delegate tappedInToolbar:self doublePageButton:button];
 }
 
 - (void)printButtonTapped:(UIButton *)button
