@@ -1,9 +1,9 @@
 //
 //	ReaderContentTile.m
-//	Reader v2.6.0
+//	Reader v2.8.6
 //
 //	Created by Julius Oklamcak on 2011-07-01.
-//	Copyright © 2011-2013 Julius Oklamcak. All rights reserved.
+//	Copyright © 2011-2015 Julius Oklamcak. All rights reserved.
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
 //	of this software and associated documentation files (the "Software"), to deal
@@ -27,31 +27,30 @@
 
 @implementation ReaderContentTile
 
-#pragma mark Constants
+#pragma mark - Constants
 
-#define LEVELS_OF_DETAIL 4
-#define LEVELS_OF_DETAIL_BIAS 3
+#define LEVELS_OF_DETAIL 16
 
-#pragma mark ReaderContentTile class methods
+#pragma mark - ReaderContentTile class methods
 
 + (CFTimeInterval)fadeDuration
 {
 	return 0.001; // iOS bug (flickering tiles) workaround
 }
 
-#pragma mark ReaderContentTile instance methods
+#pragma mark - ReaderContentTile instance methods
 
-- (id)init
+- (instancetype)init
 {
-	if ((self = [super init]))
+	if ((self = [super init])) // Initialize superclass
 	{
 		self.levelsOfDetail = LEVELS_OF_DETAIL; // Zoom levels
+
+		self.levelsOfDetailBias = (LEVELS_OF_DETAIL - 1); // Bias
 
 		UIScreen *mainScreen = [UIScreen mainScreen]; // Main screen
 
 		CGFloat screenScale = [mainScreen scale]; // Main screen scale
-
-		self.levelsOfDetailBias = (screenScale > 1.0f) ? 1 : LEVELS_OF_DETAIL_BIAS;
 
 		CGRect screenBounds = [mainScreen bounds]; // Main screen bounds
 

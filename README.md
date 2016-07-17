@@ -16,10 +16,10 @@ project template that you could start building from, or, just pull
 the required files into an existing project to enable PDF
 reading/viewing in your app(s).
 
-![iPod Page](http://i.imgur.com/wxC1B.png)<p></p>
-![iPod Thumbs](http://i.imgur.com/4VNyQ.png)<p></p>
-![iPad Page](http://i.imgur.com/T6nfI.png)<p></p>
-![iPad Thumbs](http://i.imgur.com/wxQRC.png)
+![iPad Page](http://i.imgur.com/jaeCPz1.png)<p></p>
+![iPad Thumbs](http://i.imgur.com/1b4kY9s.png)<p></p>
+![iPod Page](http://i.imgur.com/y8wWRDN.png)<p></p>
+![iPod Thumbs](http://i.imgur.com/nddT2RP.png)<p></p>
 
 After launching the sample app, tap on the left hand side of the
 screen to go back a page. Tap on the right hand side to go to the
@@ -56,12 +56,7 @@ Supports:
 
 Version 2.x of the PDF reader code was originally developed
 and tested under Xcode 3.2.6, LLVM 1.7 and iOS 4 with current
-development and testing under Xcode 5.0, LLVM 5.0 and iOS 7.
-Please note that as of v2.6, the code was refactored to use ARC.
-
-Version 2.x of the PDF reader code was originally developed and
-tested under Xcode 3.2.6, LLVM 1.7, iOS 4.3.5 and iOS 4.2.1 with
-current development and testing under Xcode 5.0, LLVM 5.0, iOS 7.
+development and testing under Xcode 7.2, LLVM 7.0 and iOS 9.2.
 Please note that as of v2.6, the code was refactored to use ARC.
 
 The overall PDF reader functionality is encapsulated in the
@@ -80,8 +75,7 @@ Please note that since ReaderViewController implements its own
 toolbar, you need to hide the UINavigationController navigation
 bar before pushing it and then show the navigation bar after
 popping it. The ReaderDemoController class shows how this is
-done with a bundled PDF file. To create a 'book as an app',
-please see the ReaderBookDelegate class.
+done with a bundled PDF file.
 
 ### Required Files
 
@@ -108,13 +102,14 @@ reader into one of your projects:
 	ThumbsMainToolbar.h, ThumbsMainToolbar.m
 	UIXToolbarView.h, UIXToolbarView.m
 
-	Reader-Button-H.png, Reader-Button-H@2x.png
-	Reader-Button-N.png, Reader-Button-N@2x.png
-	Reader-Email.png, Reader-Email@2x.png
-	Reader-Mark-N.png, Reader-Mark-N@2x.png
-	Reader-Mark-Y.png, Reader-Mark-Y@2x.png
-	Reader-Print.png, Reader-Print@2x.png
-	Reader-Thumbs.png, Reader-Thumbs@2x.png
+	Reader-Button-H.png, Reader-Button-H@2x.png, Reader-Button-H@3x.png
+	Reader-Button-N.png, Reader-Button-N@2x.png, Reader-Button-N@3x.png
+	Reader-Email.png, Reader-Email@2x.png, Reader-Email@3x.png
+	Reader-Export.png, Reader-Export@2x.png, Reader-Export@3x.png
+	Reader-Mark-N.png, Reader-Mark-N@2x.png, Reader-Mark-N@3x.png
+	Reader-Mark-Y.png, Reader-Mark-Y@2x.png, Reader-Mark-Y@3x.png
+	Reader-Print.png, Reader-Print@2x.png, Reader-Print@3x.png
+	Reader-Thumbs.png, Reader-Thumbs@2x.png, Reader-Thumbs@3x.png
 
 	Localizable.strings (UTF-16 encoding)
 
@@ -129,26 +124,14 @@ all of the following iOS frameworks are required:
 
 In ReaderConstants.h the following #define options are available:
 
-`READER_BOOKMARKS` - If TRUE, enables page bookmark support.
-
-`READER_ENABLE_MAIL` - If TRUE, an email button is added to the toolbar
-(if the device is properly configured for email support).
-
-`READER_ENABLE_PRINT` - If TRUE, a print button is added to the toolbar
-(if printing is supported and available on the device).
-
-`READER_ENABLE_THUMBS` - If TRUE, a thumbs button is added to the toolbar
-(enabling page thumbnail document navigation).
-
-`READER_DISABLE_IDLE` - If TRUE, the iOS idle timer is disabled while
-viewing a document (beware of battery drain).
+`READER_FLAT_UI` - If TRUE, follows the Fuglyosity of Flat Fad
+(flattens the UI).
 
 `READER_SHOW_SHADOWS` - If TRUE, a shadow is shown around each page
-and the page content is inset by a couple of extra points.
+and page thumbnail.
 
-`READER_STANDALONE` - If FALSE, a "Done" button is added to the toolbar
-and the -dismissReaderViewController: delegate method is messaged when
-it is tapped.
+`READER_ENABLE_THUMBS` - If TRUE, a thumbs button is added to the main
+toolbar enabling page thumbnail document navigation.
 
 `READER_DISABLE_RETINA` - If TRUE, sets the CATiledLayer contentScale
 to 1.0f. This effectively disables retina support and results in
@@ -158,6 +141,7 @@ the loss of retina display quality.
 `READER_ENABLE_PREVIEW` - If TRUE, a medium resolution page thumbnail
 is displayed before the CATiledLayer starts to render the PDF page.
 
+<<<<<<< HEAD
 `READER_ENABLE_DOUBLE_PAGE` - If TRUE, two pages will be displayed at once
 in landscape orientation, when necessary.
 
@@ -166,6 +150,16 @@ have the same zoom scale as double pages. `READER_ENABLE_DOUBLE_PAGE` must also 
 
 `READER_ENABLE_DOUBLE_PAGE_FIRST_PAGE` - If TRUE, the first page will also
 display the second page. `READER_ENABLE_DOUBLE_PAGE` must also be TRUE.
+=======
+`READER_DISABLE_IDLE` - If TRUE, the iOS idle timer is disabled while
+viewing a document (beware of battery drain).
+
+`READER_STANDALONE` - If FALSE, a "Done" button is added to the toolbar
+and the -dismissReaderViewController: delegate method is messaged when
+it is tapped.
+
+`READER_BOOKMARKS` - If TRUE, enables page bookmark support.
+>>>>>>> vfr/master
 
 ### ReaderDocument Archiving
 
@@ -181,6 +175,8 @@ page thumb cache is kept.
 Website: [http://www.vfr.org/](http://www.vfr.org/)
 
 Email: joklamcak(at)gmail(dot)com
+
+Twitter: [@joklamcak](https://twitter.com/joklamcak)
 
 If you find this code useful, or wish to fund further development,
 you can use PayPal to donate to the vfr-Reader project:

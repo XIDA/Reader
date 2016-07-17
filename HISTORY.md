@@ -1,6 +1,64 @@
 
 ## History
 
+2016-01-20: Version 2.8.7
+
+	- Added iOS 9 and iPad Pro support.
+	- iPhone 6 Plus and iPhone 6S Plus @3x graphics.
+	- Sticky paging on iPod/iPhone workaround fix.
+
+2015-03-24: Version 2.8.6
+
+	- Added French and Spanish Localizable.strings
+	- iOS 8 UIScrollView bug revisited - again...
+
+2014-12-07: Version 2.8.5
+
+	- iPhone 6 and 6 Plus support - launch images and thumbnails.
+	- iOS 8 UIScrollView bug revisited - possibly fixed in 8.1.1?
+
+2014-10-18: Version 2.8.4
+
+	- Fixed a rather daft design decision in ReaderDocument.
+
+2014-09-20: Version 2.8.3
+
+	- Workaround for bug in 32-bit iOS UIScrollView when UIUserInterfaceIdiomPhone.
+
+2014-09-17: Version 2.8.2
+
+	- Tweaked the flat toolbar look.
+
+2014-09-16: Version 2.8.1
+
+	- Replaced READER_ENABLE_MAIL with a canEmail document property.
+	- Replaced READER_ENABLE_EXPORT with a canExport document property.
+	- Replaced READER_ENABLE_PRINT with a canPrint document property.
+	- Compile time READER_FLAT_UI option now flattens the toolbars.
+
+2014-09-14: Version 2.8.0
+
+	- Double-tap to zoom now centers the zoom on the location of the double-tap.
+	- The toolbar Done button now adjusts its width based on the width of its localized text.
+	- Reworked handling of views in the ReaderViewController paging UIScrollView. You can now page as fast as the device can go.
+	- Added a READER_ENABLE_EXPORT compile time option. Uses UIDocumentInteractionController to export the current PDF to other applications.
+	- Added a READER_FLAT_UI compile time option that (for now only) disables button borders.
+	- Fixed crash under iOS 8 - please see the note in the ReaderDocument class file.
+	- Cleaned up 64-bit compiler warnings for various format strings.
+
+2013-11-19: Version 2.7.3
+
+	- Retina and zoom levels bug fixes.
+	- PDF annotation URI handling bug fix.
+
+2013-10-24: Version 2.7.2
+
+	- iOS 7 status bar handling bug fixes.
+
+2013-10-12: Version 2.7.1
+
+	- Changed 'unsafe_unretained' to 'weak'.
+
 2013-10-03: Version 2.7.0
 
 	- iOS 7 and Xcode 5.0 support.
@@ -28,7 +86,7 @@
 2012-04-10: Version 2.5.5
 
 	- Handles PDF web links without http:// as the prefix.
-	- Bug fix to PDF link handling with cropboxed PDF files.
+	- Bug fix to PDF link handling with crop-boxed PDF files.
 	- Some performance improvements on iPad 3rd generation.
 
 2012-01-14: Version 2.5.4

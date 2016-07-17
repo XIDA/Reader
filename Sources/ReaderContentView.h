@@ -1,9 +1,9 @@
 //
 //	ReaderContentView.h
-//	Reader v2.6.0
+//	Reader v2.8.6
 //
 //	Created by Julius Oklamcak on 2011-07-01.
-//	Copyright © 2011-2013 Julius Oklamcak. All rights reserved.
+//	Copyright © 2011-2015 Julius Oklamcak. All rights reserved.
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
 //	of this software and associated documentation files (the "Software"), to deal
@@ -45,19 +45,23 @@
 
 @end
 
-@interface ReaderContentView : UIScrollView <UIScrollViewDelegate>
+@interface ReaderContentView : UIScrollView
 
-@property (nonatomic, unsafe_unretained, readwrite) id <ReaderContentViewDelegate> message;
+@property (nonatomic, weak, readwrite) id <ReaderContentViewDelegate> message;
 
+<<<<<<< HEAD
 - (id)initWithFrame:(CGRect)frame fileURL:(NSURL *)fileURL page:(NSUInteger)page password:(NSString *)phrase message:(id <ReaderContentViewDelegate>)message;
+=======
+- (instancetype)initWithFrame:(CGRect)frame fileURL:(NSURL *)fileURL page:(NSUInteger)page password:(NSString *)phrase;
+>>>>>>> vfr/master
 
 - (void)showPageThumb:(NSURL *)fileURL page:(NSInteger)page password:(NSString *)phrase guid:(NSString *)guid;
 
 - (id)processSingleTap:(UITapGestureRecognizer *)recognizer;
 
-- (void)zoomIncrement;
-- (void)zoomDecrement;
-- (void)zoomReset;
+- (void)zoomIncrement:(UITapGestureRecognizer *)recognizer;
+- (void)zoomDecrement:(UITapGestureRecognizer *)recognizer;
+- (void)zoomResetAnimated:(BOOL)animated;
 
 @end
 

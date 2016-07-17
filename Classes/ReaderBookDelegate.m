@@ -1,9 +1,9 @@
 //
 //	ReaderBookDelegate.m
-//	Reader v2.7.0
+//	Reader v2.8.6
 //
 //	Created by Julius Oklamcak on 2011-09-01.
-//	Copyright © 2011-2013 Julius Oklamcak. All rights reserved.
+//	Copyright © 2011-2015 Julius Oklamcak. All rights reserved.
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
 //	of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,7 @@
 	ReaderViewController *readerViewController;
 }
 
-#pragma mark UIApplicationDelegate methods
+#pragma mark - UIApplicationDelegate methods
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
@@ -111,7 +111,7 @@
 	// (or reloaded from disk) later.
 }
 
-#pragma mark ReaderViewControllerDelegate methods
+#pragma mark - ReaderViewControllerDelegate methods
 
 - (void)dismissReaderViewController:(ReaderViewController *)viewController
 {
