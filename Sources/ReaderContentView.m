@@ -36,16 +36,11 @@
 
 @implementation ReaderContentView
 {
-<<<<<<< HEAD
-	ReaderContentPage *theContentView;
-    ReaderContentPage *theContentView2;
-=======
 	UIView *theContainerView;
 
 	UIUserInterfaceIdiom userInterfaceIdiom;
 
 	ReaderContentPage *theContentPage;
->>>>>>> vfr/master
 
 	ReaderContentThumb *theThumbView;
 
@@ -118,15 +113,7 @@ static inline CGFloat zoomScaleThatFits(CGSize target, CGSize source)
 {
 	CGFloat iw = 0.0f; CGFloat ih = 0.0f; // Content width and height insets
 
-<<<<<<< HEAD
-    CGSize sourceSize = theContainerView.bounds.size;
-    
-    if ([message shouldDoublePageForCurrentInterfaceOrientation] && message.doublePageConsistentZoom && !theContentView2) sourceSize.width *= 2.0f;
-    
-	CGFloat zoomScale = ZoomScaleThatFits(targetRect.size, sourceSize);
-=======
 	CGSize boundsSize = self.bounds.size; CGSize contentSize = self.contentSize; // Sizes
->>>>>>> vfr/master
 
 	if (contentSize.width < boundsSize.width) iw = ((boundsSize.width - contentSize.width) * 0.5f);
 
@@ -137,11 +124,7 @@ static inline CGFloat zoomScaleThatFits(CGSize target, CGSize source)
 	if (UIEdgeInsetsEqualToEdgeInsets(self.contentInset, insets) == false) self.contentInset = insets;
 }
 
-<<<<<<< HEAD
-- (id)initWithFrame:(CGRect)frame fileURL:(NSURL *)fileURL page:(NSUInteger)page password:(NSString *)phrase message:(id <ReaderContentViewDelegate>)aMessage
-=======
 - (instancetype)initWithFrame:(CGRect)frame fileURL:(NSURL *)fileURL page:(NSUInteger)page password:(NSString *)phrase
->>>>>>> vfr/master
 {
 	if ((self = [super initWithFrame:frame]))
 	{
@@ -155,32 +138,14 @@ static inline CGFloat zoomScaleThatFits(CGSize target, CGSize source)
 		self.autoresizesSubviews = NO;
 		self.clipsToBounds = NO;
 		self.delegate = self;
-        message = aMessage;
 
 		userInterfaceIdiom = [UIDevice currentDevice].userInterfaceIdiom; // User interface idiom
 
 		theContentPage = [[ReaderContentPage alloc] initWithURL:fileURL page:page password:phrase];
 
-<<<<<<< HEAD
-        if ([message shouldDoublePageForCurrentInterfaceOrientation] && (message.doublePageFirstPage || page > 1) && page < theContentView.pageCount)
-        {
-            theContentView2 = [[ReaderContentPage alloc] initWithURL:fileURL page:page+1 password:phrase];
-            CGRect frame = theContentView2.frame;
-            frame.origin.x = theContentView.frame.size.width;
-            theContentView2.frame = frame;
-        }
-        
-		if (theContentView != nil) // Must have a valid and initialized content view
-		{
-            CGRect theContainerViewFrame = theContentView.bounds;
-            if (theContentView2) theContainerViewFrame.size.width *= 2;
-            
-			theContainerView = [[UIView alloc] initWithFrame:theContainerViewFrame];
-=======
 		if (theContentPage != nil) // Must have a valid and initialized content page
 		{
 			theContainerView = [[UIView alloc] initWithFrame:theContentPage.bounds];
->>>>>>> vfr/master
 
 			theContainerView.autoresizesSubviews = NO;
 			theContainerView.userInteractionEnabled = NO;
@@ -196,13 +161,7 @@ static inline CGFloat zoomScaleThatFits(CGSize target, CGSize source)
 
 #endif // end of READER_SHOW_SHADOWS Option
 
-<<<<<<< HEAD
-			self.contentSize = theContainerViewFrame.size; // Content size same as view size
-			self.contentOffset = CGPointMake((0.0f - CONTENT_INSET), (0.0f - CONTENT_INSET)); // Offset
-			self.contentInset = UIEdgeInsetsMake(CONTENT_INSET, CONTENT_INSET, CONTENT_INSET, CONTENT_INSET);
-=======
 			self.contentSize = theContentPage.bounds.size; [self centerScrollViewContent];
->>>>>>> vfr/master
 
 #if (READER_ENABLE_PREVIEW == TRUE) // Option
 
@@ -212,14 +171,8 @@ static inline CGFloat zoomScaleThatFits(CGSize target, CGSize source)
 
 #endif // end of READER_ENABLE_PREVIEW Option
 
-<<<<<<< HEAD
-			[theContainerView addSubview:theContentView]; // Add the content view to the container view
-            if (theContentView2) [theContainerView addSubview:theContentView2];
-            
-=======
 			[theContainerView addSubview:theContentPage]; // Add the content page to the container view
 
->>>>>>> vfr/master
 			[self addSubview:theContainerView]; // Add the container view to the scroll view
 
 			[self updateMinimumMaximumZoom]; // Update the minimum and maximum zoom scales

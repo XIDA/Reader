@@ -27,13 +27,7 @@
 
 @interface ReaderContentPage : UIView
 
-<<<<<<< HEAD
-@property (nonatomic, readonly) NSInteger pageCount;
-
-- (id)initWithURL:(NSURL *)fileURL page:(NSInteger)page password:(NSString *)phrase;
-=======
 - (instancetype)initWithURL:(NSURL *)fileURL page:(NSInteger)page password:(NSString *)phrase;
->>>>>>> vfr/master
 
 - (id)processSingleTap:(UITapGestureRecognizer *)recognizer;
 

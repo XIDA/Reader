@@ -36,11 +36,7 @@
 
 - (void)tappedInToolbar:(ReaderMainToolbar *)toolbar doneButton:(UIButton *)button;
 - (void)tappedInToolbar:(ReaderMainToolbar *)toolbar thumbsButton:(UIButton *)button;
-<<<<<<< HEAD
-- (void)tappedInToolbar:(ReaderMainToolbar *)toolbar doublePageButton:(UIButton *)button;
-=======
 - (void)tappedInToolbar:(ReaderMainToolbar *)toolbar exportButton:(UIButton *)button;
->>>>>>> vfr/master
 - (void)tappedInToolbar:(ReaderMainToolbar *)toolbar printButton:(UIButton *)button;
 - (void)tappedInToolbar:(ReaderMainToolbar *)toolbar emailButton:(UIButton *)button;
 - (void)tappedInToolbar:(ReaderMainToolbar *)toolbar markButton:(UIButton *)button;
@@ -54,9 +50,6 @@
 - (instancetype)initWithFrame:(CGRect)frame document:(ReaderDocument *)document;
 
 - (void)setBookmarkState:(BOOL)state;
-
-- (void)setDoublePageState:(BOOL)state;
-- (BOOL)doublePageState;
 
 - (void)hideToolbar;
 - (void)showToolbar;

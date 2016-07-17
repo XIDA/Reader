@@ -43,17 +43,9 @@
 
 	CGFloat _pageOffsetX;
 	CGFloat _pageOffsetY;
-    
-    NSInteger _pageCount;
 }
 
-<<<<<<< HEAD
-@synthesize pageCount = _pageCount;
-
-#pragma mark ReaderContentPage class methods
-=======
 #pragma mark - ReaderContentPage class methods
->>>>>>> vfr/master
 
 + (Class)layerClass
 {
@@ -356,7 +348,9 @@
 
 		if (CGPDFArrayGetDictionary(destArray, 0, &pageDictionaryFromDestArray) == true)
 		{
-			for (NSInteger pageNumber = 1; pageNumber <= _pageCount; pageNumber++)
+			NSInteger pageCount = CGPDFDocumentGetNumberOfPages(_PDFDocRef); // Pages
+
+			for (NSInteger pageNumber = 1; pageNumber <= pageCount; pageNumber++)
 			{
 				CGPDFPageRef pageRef = CGPDFDocumentGetPage(_PDFDocRef, pageNumber);
 
@@ -438,9 +432,9 @@
 		{
 			if (page < 1) page = 1; // Check the lower page bounds
 
-			_pageCount = CGPDFDocumentGetNumberOfPages(_PDFDocRef);
+			NSInteger pages = CGPDFDocumentGetNumberOfPages(_PDFDocRef);
 
-			if (page > _pageCount) page = _pageCount; // Check the upper page bounds
+			if (page > pages) page = pages; // Check the upper page bounds
 
 			_PDFPageRef = CGPDFDocumentGetPage(_PDFDocRef, page); // Get page
 

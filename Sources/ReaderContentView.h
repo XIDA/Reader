@@ -30,7 +30,6 @@
 @class ReaderContentView;
 @class ReaderContentPage;
 @class ReaderContentThumb;
-@class ReaderDocument;
 
 @protocol ReaderContentViewDelegate <NSObject>
 
@@ -38,22 +37,13 @@
 
 - (void)contentView:(ReaderContentView *)contentView touchesBegan:(NSSet *)touches;
 
-- (BOOL)shouldDoublePageForCurrentInterfaceOrientation;
-
-@property (nonatomic, assign, readonly) BOOL doublePageConsistentZoom;
-@property (nonatomic, assign, readonly) BOOL doublePageFirstPage;
-
 @end
 
 @interface ReaderContentView : UIScrollView
 
 @property (nonatomic, weak, readwrite) id <ReaderContentViewDelegate> message;
 
-<<<<<<< HEAD
-- (id)initWithFrame:(CGRect)frame fileURL:(NSURL *)fileURL page:(NSUInteger)page password:(NSString *)phrase message:(id <ReaderContentViewDelegate>)message;
-=======
 - (instancetype)initWithFrame:(CGRect)frame fileURL:(NSURL *)fileURL page:(NSUInteger)page password:(NSString *)phrase;
->>>>>>> vfr/master
 
 - (void)showPageThumb:(NSURL *)fileURL page:(NSInteger)page password:(NSString *)phrase guid:(NSString *)guid;
 

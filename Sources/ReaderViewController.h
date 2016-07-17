@@ -39,14 +39,7 @@
 
 @interface ReaderViewController : UIViewController
 
-<<<<<<< HEAD
-@property (nonatomic, unsafe_unretained, readwrite) id <ReaderViewControllerDelegate> delegate;
-@property (nonatomic, assign, readwrite) BOOL doublePage;
-@property (nonatomic, assign, readwrite) BOOL doublePageConsistentZoom;
-@property (nonatomic, assign, readwrite) BOOL doublePageFirstPage;
-=======
 @property (nonatomic, weak, readwrite) id <ReaderViewControllerDelegate> delegate;
->>>>>>> vfr/master
 
 - (instancetype)initWithReaderDocument:(ReaderDocument *)object;
 

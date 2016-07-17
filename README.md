@@ -50,7 +50,6 @@ Supports:
  - Encrypted (password protected) PDFs.
  - PDF links (URI and go to page).
  - PDFs with rotated pages.
- - Double page viewing in landscape orientation.
 
 ### Notes
 
@@ -141,16 +140,6 @@ the loss of retina display quality.
 `READER_ENABLE_PREVIEW` - If TRUE, a medium resolution page thumbnail
 is displayed before the CATiledLayer starts to render the PDF page.
 
-<<<<<<< HEAD
-`READER_ENABLE_DOUBLE_PAGE` - If TRUE, two pages will be displayed at once
-in landscape orientation, when necessary.
-
-`READER_ENABLE_DOUBLE_PAGE_CONSISTENT_ZOOM` - If TRUE, single pages will
-have the same zoom scale as double pages. `READER_ENABLE_DOUBLE_PAGE` must also be TRUE.
-
-`READER_ENABLE_DOUBLE_PAGE_FIRST_PAGE` - If TRUE, the first page will also
-display the second page. `READER_ENABLE_DOUBLE_PAGE` must also be TRUE.
-=======
 `READER_DISABLE_IDLE` - If TRUE, the iOS idle timer is disabled while
 viewing a document (beware of battery drain).
 
@@ -159,7 +148,6 @@ and the -dismissReaderViewController: delegate method is messaged when
 it is tapped.
 
 `READER_BOOKMARKS` - If TRUE, enables page bookmark support.
->>>>>>> vfr/master
 
 ### ReaderDocument Archiving
 

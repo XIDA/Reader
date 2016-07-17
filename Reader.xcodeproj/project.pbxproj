@@ -68,12 +68,6 @@
 		45AB7325141FC0B1003524C3 /* ThumbsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AB7312141FC0B1003524C3 /* ThumbsViewController.m */; };
 		45BD5AFE13AE721A00D6FE97 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45BD5AFD13AE721A00D6FE97 /* MessageUI.framework */; };
 		45D5ADA31610EADD00706B9A /* ReaderDocumentOutline.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D5ADA21610EADC00706B9A /* ReaderDocumentOutline.m */; };
-<<<<<<< HEAD
-		B71C3A92180413E900774A3A /* Reader-Double-Page-N.png in Resources */ = {isa = PBXBuildFile; fileRef = B71C3A8E180413E900774A3A /* Reader-Double-Page-N.png */; };
-		B71C3A93180413E900774A3A /* Reader-Double-Page-N@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B71C3A8F180413E900774A3A /* Reader-Double-Page-N@2x.png */; };
-		B71C3A94180413E900774A3A /* Reader-Double-Page-Y.png in Resources */ = {isa = PBXBuildFile; fileRef = B71C3A90180413E900774A3A /* Reader-Double-Page-Y.png */; };
-		B71C3A95180413E900774A3A /* Reader-Double-Page-Y@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B71C3A91180413E900774A3A /* Reader-Double-Page-Y@2x.png */; };
-=======
 		45D984371C501B0300ADFD5E /* Reader-Button-H@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45D9842F1C501B0300ADFD5E /* Reader-Button-H@3x.png */; };
 		45D984381C501B0300ADFD5E /* Reader-Button-N@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45D984301C501B0300ADFD5E /* Reader-Button-N@3x.png */; };
 		45D984391C501B0300ADFD5E /* Reader-Email@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45D984311C501B0300ADFD5E /* Reader-Email@3x.png */; };
@@ -82,7 +76,6 @@
 		45D9843C1C501B0300ADFD5E /* Reader-Mark-Y@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45D984341C501B0300ADFD5E /* Reader-Mark-Y@3x.png */; };
 		45D9843D1C501B0300ADFD5E /* Reader-Print@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45D984351C501B0300ADFD5E /* Reader-Print@3x.png */; };
 		45D9843E1C501B0300ADFD5E /* Reader-Thumbs@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45D984361C501B0300ADFD5E /* Reader-Thumbs@3x.png */; };
->>>>>>> vfr/master
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -188,10 +181,6 @@
 		45D984351C501B0300ADFD5E /* Reader-Print@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Print@3x.png"; path = "Graphics/Reader-Print@3x.png"; sourceTree = "<group>"; };
 		45D984361C501B0300ADFD5E /* Reader-Thumbs@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Thumbs@3x.png"; path = "Graphics/Reader-Thumbs@3x.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Reader-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Reader-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
-		B71C3A8E180413E900774A3A /* Reader-Double-Page-N.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Double-Page-N.png"; path = "Graphics/Reader-Double-Page-N.png"; sourceTree = "<group>"; };
-		B71C3A8F180413E900774A3A /* Reader-Double-Page-N@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Double-Page-N@2x.png"; path = "Graphics/Reader-Double-Page-N@2x.png"; sourceTree = "<group>"; };
-		B71C3A90180413E900774A3A /* Reader-Double-Page-Y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Double-Page-Y.png"; path = "Graphics/Reader-Double-Page-Y.png"; sourceTree = "<group>"; };
-		B71C3A91180413E900774A3A /* Reader-Double-Page-Y@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Double-Page-Y@2x.png"; path = "Graphics/Reader-Double-Page-Y@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,14 +317,7 @@
 				45D9842F1C501B0300ADFD5E /* Reader-Button-H@3x.png */,
 				455C789B14268F6A0053D73B /* Reader-Button-N.png */,
 				455C789C14268F6A0053D73B /* Reader-Button-N@2x.png */,
-<<<<<<< HEAD
-				B71C3A8E180413E900774A3A /* Reader-Double-Page-N.png */,
-				B71C3A8F180413E900774A3A /* Reader-Double-Page-N@2x.png */,
-				B71C3A90180413E900774A3A /* Reader-Double-Page-Y.png */,
-				B71C3A91180413E900774A3A /* Reader-Double-Page-Y@2x.png */,
-=======
 				45D984301C501B0300ADFD5E /* Reader-Button-N@3x.png */,
->>>>>>> vfr/master
 				45AB72BC141FBFCA003524C3 /* Reader-Email.png */,
 				45AB72BD141FBFCA003524C3 /* Reader-Email@2x.png */,
 				45D984311C501B0300ADFD5E /* Reader-Email@3x.png */,
@@ -488,29 +470,17 @@
 				4521AB4019C5EE6000B16688 /* Reader-Export@2x.png in Resources */,
 				4513ACFB19C4A1FB004916D1 /* AppIcon-180.png in Resources */,
 				45AB72DC141FC039003524C3 /* Reader.pdf in Resources */,
-<<<<<<< HEAD
-				45AB72DE141FC043003524C3 /* LICENSE.md in Resources */,
-				B71C3A95180413E900774A3A /* Reader-Double-Page-Y@2x.png in Resources */,
-				B71C3A93180413E900774A3A /* Reader-Double-Page-N@2x.png in Resources */,
-				45AB72E0141FC04B003524C3 /* README.md in Resources */,
-=======
 				45D9843A1C501B0300ADFD5E /* Reader-Export@3x.png in Resources */,
 				45D9843B1C501B0300ADFD5E /* Reader-Mark-N@3x.png in Resources */,
->>>>>>> vfr/master
 				455C789D14268F6A0053D73B /* Reader-Button-H.png in Resources */,
 				455C789E14268F6A0053D73B /* Reader-Button-H@2x.png in Resources */,
 				455C789F14268F6A0053D73B /* Reader-Button-N.png in Resources */,
 				4524A6F01C5011D700D7DF7F /* Reader-App.storyboard in Resources */,
 				455C78A014268F6A0053D73B /* Reader-Button-N@2x.png in Resources */,
-<<<<<<< HEAD
-				B71C3A94180413E900774A3A /* Reader-Double-Page-Y.png in Resources */,
-=======
 				45D9843D1C501B0300ADFD5E /* Reader-Print@3x.png in Resources */,
 				45D9843C1C501B0300ADFD5E /* Reader-Mark-Y@3x.png in Resources */,
->>>>>>> vfr/master
 				4583767F1533B0AC003CD230 /* AppIcon-144.png in Resources */,
 				4544394917FDD5E700781873 /* AppIcon-120.png in Resources */,
-				B71C3A92180413E900774A3A /* Reader-Double-Page-N.png in Resources */,
 				4544D87C1610A3C2003DB132 /* Default-568h@2x.png in Resources */,
 				4521AB3F19C5EE6000B16688 /* Reader-Export.png in Resources */,
 				4544394817FDD5E700781873 /* AppIcon-076.png in Resources */,

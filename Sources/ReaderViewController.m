@@ -82,60 +82,12 @@
 #pragma mark - Properties
 
 @synthesize delegate;
-@synthesize doublePage;
-@synthesize doublePageConsistentZoom;
-@synthesize doublePageFirstPage;
-
-- (void)setDoublePage:(BOOL)aDoublePage
-{
-    if (doublePage != aDoublePage)
-    {
-        doublePage = aDoublePage;
-        if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation))
-        {
-            [self updateScrollViewContentViews];
-            [self showDocumentPage:currentPage forceDraw:YES];
-        }
-    }
-}
-
-- (void)setDoublePageConsistentZoom:(BOOL)aDoublePageConsistentZoom
-{
-    if (doublePageConsistentZoom != aDoublePageConsistentZoom)
-    {
-        doublePageConsistentZoom = aDoublePageConsistentZoom;
-        if ([self shouldDoublePageForCurrentInterfaceOrientation])
-        {
-            [self updateScrollViewContentViews];
-            [self showDocumentPage:currentPage forceDraw:YES];
-        }
-    }
-}
-
-- (void)setDoublePageFirstPage:(BOOL)aDoublePageFirstPage
-{
-    if (doublePageFirstPage != aDoublePageFirstPage)
-    {
-        doublePageFirstPage = aDoublePageFirstPage;
-        if ([self shouldDoublePageForCurrentInterfaceOrientation])
-        {
-            [self updateScrollViewContentViews];
-            [self showDocumentPage:currentPage forceDraw:YES];
-        }
-    }
-}
 
 #pragma mark - ReaderViewController methods
 
 - (void)updateContentSize:(UIScrollView *)scrollView
 {
-<<<<<<< HEAD
-	NSInteger count = [self pageCount];
-
-	if (count > PAGING_VIEWS) count = PAGING_VIEWS; // Limit
-=======
 	CGFloat contentHeight = scrollView.bounds.size.height; // Height
->>>>>>> vfr/master
 
 	CGFloat contentWidth = (scrollView.bounds.size.width * maximumPage);
 
@@ -190,66 +142,11 @@
 
 - (void)layoutContentViews:(UIScrollView *)scrollView
 {
-<<<<<<< HEAD
-    [self showDocumentPage:page forceDraw:NO];
-}
-
-- (void)showDocumentPage:(NSInteger)page forceDraw:(BOOL)forceDraw
-{
-	if (page != currentPage || forceDraw) // Only if different
-	{
-		NSInteger minValue; NSInteger maxValue;
-		NSInteger maxPage = [document.pageCount integerValue];
-		NSInteger minPage = 1;
-
-		if ((page < minPage) || (page > maxPage)) return;
-        
-        BOOL shouldDoublePage = [self shouldDoublePageForCurrentInterfaceOrientation];
-        uint leftPage = [self leftPageForPage:page];
-        uint rightPage = MIN(leftPage+1, maxPage);
-
-		if (maxPage <= PAGING_VIEWS) // Few pages
-		{
-			minValue = minPage;
-			maxValue = maxPage;
-		}
-		else // Handle more pages
-		{
-            if (shouldDoublePage)
-            {
-                minValue = MAX((leftPage - 2), minPage);
-                maxValue = MIN((leftPage + 2), maxPage);
-                
-                if (leftPage == minPage)
-                {
-                    minValue = minPage;
-                    maxValue = minValue + 2 + ( 1 * (!doublePageFirstPage && (!(maxPage % 2))));
-                }
-                else if (rightPage == maxPage)
-                {
-                    maxValue = maxPage;
-                    minValue = maxValue - 3 - (1 * (!doublePageFirstPage && (!(maxPage % 2))));
-                }
-            }
-            else
-            {
-                minValue = (page - 1);
-                maxValue = (page + 1);
-
-                if (minValue < minPage)
-                    {minValue++; maxValue++;}
-                else
-                    if (maxValue > maxPage)
-                        {minValue--; maxValue--;}
-            }
-		}
-=======
 	CGFloat viewWidth = scrollView.bounds.size.width; // View width
 
 	CGFloat contentOffsetX = scrollView.contentOffset.x; // Content offset X
 
 	NSInteger pageB = ((contentOffsetX + viewWidth - 1.0f) / viewWidth); // Pages
->>>>>>> vfr/master
 
 	NSInteger pageA = (contentOffsetX / viewWidth); pageB += 2; // Add extra pages
 
@@ -257,58 +154,15 @@
 
 	NSRange pageRange = NSMakeRange(pageA, (pageB - pageA + 1)); // Make page range (A to B)
 
-<<<<<<< HEAD
-		for (NSInteger number = minValue; number <= maxValue; number++)
-		{
-            if (number < 1) continue;
-            if (shouldDoublePage)
-            {
-                if (!doublePageFirstPage)
-                {
-                    if (number != minPage && number != maxPage && number % 2) continue;
-                }
-                else
-                {
-                    if (!(number % 2)) continue;
-                }
-            }
-            
-            NSInteger leftPageNumber = [self leftPageForPage:number];
-            
-			NSNumber *key = [NSNumber numberWithInteger:leftPageNumber]; // # key
-=======
 	NSMutableIndexSet *pageSet = [NSMutableIndexSet indexSetWithIndexesInRange:pageRange];
 
 	for (NSNumber *key in [contentViews allKeys]) // Enumerate content views
 	{
 		NSInteger page = [key integerValue]; // Page number value
->>>>>>> vfr/master
 
 		if ([pageSet containsIndex:page] == NO) // Remove content view
 		{
 			ReaderContentView *contentView = [contentViews objectForKey:key];
-<<<<<<< HEAD
-            
-			if (contentView == nil || forceDraw) // Create a brand new document content view
-			{
-				NSURL *fileURL = document.fileURL; NSString *phrase = document.password; // Document properties
-
-				ReaderContentView *newContentView = [[ReaderContentView alloc] initWithFrame:viewRect fileURL:fileURL page:leftPageNumber password:phrase message:self];
-                
-				[theScrollView addSubview:newContentView]; [contentViews setObject:newContentView forKey:key];
-                
-                if (forceDraw)
-                {
-                    [contentView removeFromSuperview];
-                    [unusedViews removeObjectForKey:key];
-                }
-                
-				[newPageSet addIndex:leftPageNumber];
-			}
-			else // Reposition the existing content view
-			{
-				contentView.frame = viewRect; [contentView zoomReset];
-=======
 
 			[contentView removeFromSuperview]; [contentViews removeObjectForKey:key];
 		}
@@ -331,7 +185,6 @@
 		else if (pages == 3) // Handle three content views - show the middle one first
 		{
 			NSMutableIndexSet *workSet = [pageSet mutableCopy]; options = NSEnumerationReverse;
->>>>>>> vfr/master
 
 			[workSet removeIndex:[pageSet firstIndex]]; [workSet removeIndex:[pageSet lastIndex]];
 
@@ -357,43 +210,9 @@
 
 	NSInteger page = (contentOffsetX / viewWidth); page++; // Page number
 
-<<<<<<< HEAD
-		if (maxPage >= PAGING_VIEWS)
-		{
-            if (shouldDoublePage)
-            {
-                if (!doublePageFirstPage)
-                {
-                    if ((page == maxPage) || (page == maxPage - 1 && !(page % 2)))
-                        contentOffset.x = viewWidthX2;
-                    else if (page != minPage)
-                        contentOffset.x = viewWidthX1;
-                }
-                else
-                {
-                    if (((page == maxPage) || (page == maxPage - 1 && (page % 2))) && ((page / 2) > 2))
-                        contentOffset.x = viewWidthX2;
-                    else if (page > minPage + 1)
-                        contentOffset.x = viewWidthX1;
-                }
-            }
-            else
-            {
-                if (page == maxPage)
-                    contentOffset.x = viewWidthX2;
-                else
-                    if (page != minPage)
-                        contentOffset.x = viewWidthX1;
-            }
-		}
-		else
-			if (page == (PAGING_VIEWS - 1))
-				contentOffset.x = viewWidthX1;
-=======
 	if (page != currentPage) // Only if on different page
 	{
 		currentPage = page; document.pageNumber = [NSNumber numberWithInteger:page];
->>>>>>> vfr/master
 
 		[contentViews enumerateKeysAndObjectsUsingBlock: // Enumerate content views
 			^(NSNumber *key, ReaderContentView *contentView, BOOL *stop)
@@ -445,42 +264,7 @@
 	document.lastOpen = [NSDate date]; // Update document last opened date
 }
 
-<<<<<<< HEAD
-- (NSInteger)leftPageForPage:(NSInteger)page
-{
-    if ([self shouldDoublePageForCurrentInterfaceOrientation])
-    {
-        if (!doublePageFirstPage)
-        {
-            if (page == 1) return page;
-            if (!(page % 2)) return page;
-            else return page - 1;
-        }
-        else
-        {
-            if ((page % 2)) return page;
-            else return page - 1;
-        }
-    }
-    else
-    {
-        return page;
-    }
-}
-
-- (NSInteger)pageCount
-{
-    NSInteger pageCount = [document.pageCount integerValue];
-    if ([self shouldDoublePageForCurrentInterfaceOrientation] && (pageCount > 1))
-        return (int)(ceilf(pageCount / 2.0f) + (1.0f * (!doublePageFirstPage && (!(pageCount % 2)))));
-    else
-        return pageCount;
-}
-
-- (void)showDocument:(id)object
-=======
 - (void)closeDocument
->>>>>>> vfr/master
 {
 	if (printInteraction != nil) [printInteraction dismissAnimated:NO];
 
@@ -508,15 +292,7 @@
 	{
 		if ((object != nil) && ([object isKindOfClass:[ReaderDocument class]])) // Valid object
 		{
-<<<<<<< HEAD
-            doublePage = READER_ENABLE_DOUBLE_PAGE;
-            doublePageConsistentZoom = READER_ENABLE_DOUBLE_PAGE_CONSISTENT_ZOOM;
-            doublePageFirstPage = READER_ENABLE_DOUBLE_PAGE_FIRST_PAGE;
-            
-			NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-=======
 			userInterfaceIdiom = [UIDevice currentDevice].userInterfaceIdiom; // User interface idiom
->>>>>>> vfr/master
 
 			NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter]; // Default notification center
 
@@ -628,13 +404,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-<<<<<<< HEAD
-    
-	if (CGSizeEqualToSize(theScrollView.contentSize, CGSizeZero)) // First time
-=======
 
 	if (CGSizeEqualToSize(theScrollView.contentSize, CGSizeZero) == true)
->>>>>>> vfr/master
 	{
 		[self performSelector:@selector(showDocument) withObject:nil afterDelay:0.0];
 	}
@@ -705,25 +476,10 @@
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
 {
-<<<<<<< HEAD
-    if (isVisible == NO) return; // iOS present modal bodge
-
-	[self updateScrollViewContentViews]; // Update content views
-
-	lastAppearSize = CGSizeZero; // Reset view size tracking
-    
-    if (self.doublePage)
-    {
-        [UIView setAnimationsEnabled:NO];
-        [self showDocumentPage:currentPage forceDraw:YES];
-        [UIView setAnimationsEnabled:YES];
-    }
-=======
 	if (CGSizeEqualToSize(theScrollView.contentSize, CGSizeZero) == false)
 	{
 		[self updateContentViews:theScrollView]; lastAppearSize = CGSizeZero;
 	}
->>>>>>> vfr/master
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -776,20 +532,7 @@
 
 		contentOffset.x -= theScrollView.bounds.size.width; // View X--
 
-<<<<<<< HEAD
-            // Decrement page number
-            if ([self shouldDoublePageForCurrentInterfaceOrientation])
-            {
-                theScrollView.tag = (page - 1);
-            }
-            else
-            {
-                theScrollView.tag = ([self leftPageForPage:page] - 2);
-            }
-		}
-=======
 		[theScrollView setContentOffset:contentOffset animated:YES];
->>>>>>> vfr/master
 	}
 }
 
@@ -801,20 +544,7 @@
 
 		contentOffset.x += theScrollView.bounds.size.width; // View X++
 
-<<<<<<< HEAD
-            // Increment page number
-            if (![self shouldDoublePageForCurrentInterfaceOrientation] || (page == 1 && !doublePageFirstPage))
-            {
-                theScrollView.tag = (page + 1);
-            }
-            else
-            {
-                theScrollView.tag = ([self leftPageForPage:page] + 2);
-            }
-		}
-=======
 		[theScrollView setContentOffset:contentOffset animated:YES];
->>>>>>> vfr/master
 	}
 }
 
@@ -978,16 +708,7 @@
 	}
 }
 
-<<<<<<< HEAD
-- (BOOL)shouldDoublePageForCurrentInterfaceOrientation
-{
-    return (self.doublePage && UIInterfaceOrientationIsLandscape(self.interfaceOrientation));
-}
-
-#pragma mark ReaderMainToolbarDelegate methods
-=======
 #pragma mark - ReaderMainToolbarDelegate methods
->>>>>>> vfr/master
 
 - (void)tappedInToolbar:(ReaderMainToolbar *)toolbar doneButton:(UIButton *)button
 {
@@ -1016,17 +737,7 @@
 #endif // end of READER_ENABLE_THUMBS Option
 }
 
-<<<<<<< HEAD
-- (void)tappedInToolbar:(ReaderMainToolbar *)toolbar doublePageButton:(UIButton *)button
-{
-    self.doublePage = !doublePage;
-    [toolbar setDoublePageState:doublePage];
-}
-
-- (void)tappedInToolbar:(ReaderMainToolbar *)toolbar printButton:(UIButton *)button
-=======
 - (void)tappedInToolbar:(ReaderMainToolbar *)toolbar exportButton:(UIButton *)button
->>>>>>> vfr/master
 {
 	if (printInteraction != nil) [printInteraction dismissAnimated:YES];
 
